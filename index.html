@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock-Paper-Scissors</title>
+  </head>
+  <body>
+    <script>
+      let humanScore = 0;
+      let computerScore = 0;
+      let gameRound = 0;
+
+      function getComputerChoice() {
+        let index = Math.floor(Math.random() * 3);
+
+        if (index === 0) {
+          return "rock";
+        } else if (index === 1) {
+          return "paper";
+        } else {
+          return "scissors";
+        }
+      }
+
+      function getHumanChoice() {
+        let answer = prompt("Write your answer");
+        if (answer !== "rock" && answer !== "paper" && answer !== "scissors") {
+          return console.error("Only choosen words for game please!");
+        } else {
+          return answer.toLocaleLowerCase();
+        }
+      }
+
+      function playRound() {
+        const humanChoice = getHumanChoice();
+        const computerChoice = getComputerChoice();
+        ++gameRound;
+
+        if (humanChoice === "rock" && computerChoice === "rock") {
+          console.log("It/’s a tie! ");
+        } else if (humanChoice === "rock" && computerChoice === "paper") {
+          ++computerScore;
+          console.log("Robot wins! Paper covers Rock. ");
+        } else if (humanChoice === "rock" && computerChoice === "scissors") {
+          ++humanScore;
+          console.log("Human wins! Rock crushes Scissors.");
+        } else if (humanChoice === "paper" && computerChoice === "rock") {
+          ++humanScore;
+          console.log("Human wins! Paper covers Rock.");
+        } else if (humanChoice === "paper" && computerChoice === "paper") {
+          console.log("It/’s a tie! ");
+        } else if (humanChoice === "paper" && computerChoice === "scissors") {
+          ++computerScore;
+          console.log("Robot wins! Scissors cut Paper.");
+        } else if (humanChoice === "scissors" && computerChoice === "rock") {
+          ++computerScore;
+          console.log("Robot wins! Rock crushes Scissors!");
+        } else if (humanChoice === "scissors" && computerChoice === "paper") {
+          ++humanScore;
+          console.log("Human wins! Scissors cut Paper!");
+        } else if (
+          humanChoice === "scissors" &&
+          computerChoice === "scissors"
+        ) {
+          console.log("It/’s a tie! ");
+        }
+      }
+
+      function playGame() {
+        if (gameRound < 3) {
+          playRound();
+          playGame();
+        } else {
+          if (computerScore < humanScore) {
+            console.log("Finally! Human is winner!");
+          } else {
+            console.log("Finally! Robot is winner");
+          }
+        }
+      }
+
+      playGame();
+
+      // const variants = ['rock', 'paper', 'scissors']
+
+      // function getComputerChoice() {
+      //  let index = Math.floor(Math.random() * 3);
+      //  return variants[index];
+      // }
+
+      //   function getHumanChoice() {
+      //     let answer = prompt("Write your answer");
+
+      //     if (answer.toLowerCase() === "rock") {
+      //       console.log("rock");
+      //     } else if (answer.toLowerCase() === "paper") {
+      //       console.log("paper");
+      //     } else if (answer.toLowerCase() === "scissors") {
+      //       console.log("scissors");
+      //     } else if (answer.toLowerCase() === null || undefined) {
+      //       console.log("User not entered value");
+      //     } else {
+      //       console.log("Opss");
+      //     }
+      //     return answer;
+      //   }
+    </script>
+  </body>
+</html>
